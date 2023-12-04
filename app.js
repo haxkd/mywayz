@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
 
+
 const app = express();
 const PORT = 3000;
 
@@ -12,7 +13,6 @@ async function scrapeLinks() {
   const url = 'https://diversetile.blogspot.com/';
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
-
   const links = [];
   $('a').each((index, element) => {
     const href = $(element).attr('href');
@@ -23,6 +23,7 @@ async function scrapeLinks() {
 
   return links;
 }
+
 
 // Endpoint to generate and save links in a JSON file of links
 app.get('/generate-links', async (req, res) => {
@@ -35,6 +36,7 @@ app.get('/generate-links', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error generating links.' });
   }
 });
+
 
 // Endpoint to randomly redirect to one of the generated link
 app.get('/', (req, res) => {
