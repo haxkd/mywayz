@@ -4,7 +4,6 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const path = require('path');
 
-
 const app = express();
 const PORT = 3000;
 
@@ -20,7 +19,6 @@ async function scrapeLinks() {
       links.push(href);
     }
   });
-
   return links;
 }
 
