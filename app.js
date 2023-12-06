@@ -6,6 +6,7 @@ const path = require('path');
 
 const app = express();
 const PORT = 3000;
+const links = [];
 
 // Function to scrape links from the given website
 async function scrapeLinks() {
@@ -13,11 +14,12 @@ async function scrapeLinks() {
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
 
-  const links = [];
   $('a').each((index, element) => {
     const href = $(element).attr('href');
     if (href && href.startsWith('https://diversetile.blogspot.com/')) {
-      links.push(href);
+      if(!links.includes(href)){
+        links.push(href);
+      }
     }
   });
 
@@ -29,7 +31,7 @@ app.get('/generate-links', async (req, res) => {
   try {
     const links = await scrapeLinks();
     fs.writeFileSync(path.join(__dirname, 'links.json'), JSON.stringify(links, null, 2));
-    res.json({ success: true, message: 'Links generated and saved.' });
+    res.json({ success: true, message: 'Links generated and saved.',links:links });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Error generating links.' });
