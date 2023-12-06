@@ -8,12 +8,11 @@ const app = express();
 const PORT = 3000;
 const links = [];
 
-// Function to scrape links from the given website
+// Function to scrape links from the given websites
 async function scrapeLinks() {
   const url = 'https://diversetile.blogspot.com/';
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
-
   $('a').each((index, element) => {
     const href = $(element).attr('href');
     if (href && href.startsWith('https://diversetile.blogspot.com/')) {
@@ -22,11 +21,11 @@ async function scrapeLinks() {
       }
     }
   });
-
   return links;
 }
 
-// Endpoint to generate and save links in a JSON file
+
+// Endpoint to generate and save links in a JSON file of links
 app.get('/generate-links', async (req, res) => {
   try {
     const links = await scrapeLinks();
@@ -38,7 +37,8 @@ app.get('/generate-links', async (req, res) => {
   }
 });
 
-// Endpoint to randomly redirect to one of the generated links
+
+// Endpoint to randomly redirect to one of the generated link
 app.get('/', (req, res) => {
   try {
     const links = JSON.parse(fs.readFileSync(path.join(__dirname, 'links.json')));
