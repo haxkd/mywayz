@@ -53,7 +53,7 @@ app.get("/generate-links", async (req, res) => {
   }
 });
 
-// Endpoint to randomly redirect to one of the generated link
+// Endpoint to randomly redirect to one of the generated links
 app.get("/", (req, res) => {
   try {
     const links = JSON.parse(
