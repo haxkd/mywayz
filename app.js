@@ -32,6 +32,7 @@ async function scrapeLinks() {
   return links;
 }
 
+
 // Endpoint to generate and save links in a JSON file of links
 app.get("/generate-links", async (req, res) => {
   try {
@@ -53,6 +54,7 @@ app.get("/generate-links", async (req, res) => {
   }
 });
 
+
 // Endpoint to randomly redirect to one of the generated links
 app.get("/", (req, res) => {
   try {
@@ -67,6 +69,7 @@ app.get("/", (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
