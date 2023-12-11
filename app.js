@@ -19,13 +19,13 @@ async function scrapeLinks() {
     if (href && href.startsWith("https://diversetile.blogspot.com/")) {
       if (!links.includes(href)) {
         links.push(href);
-        links.push("http://google.com/search?q=" + href);
+        //links.push("http://google.com/search?q=" + href);
       }
       if (href.endsWith(".html") ) {
         var modifiedX = href.replace(/[.:\/-]/g, " ");
         var hrefs = "http://google.com/search?q=" + modifiedX+" site:diversetile.blogspot.com"
         if(!links.includes(hrefs)){          
-          links.push(hrefs);
+          //links.push(hrefs);
         }
       }
     }
