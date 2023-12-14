@@ -32,6 +32,7 @@ async function scrapeLinks() {
   return links;
 }
 
+
 // Endpoint to generate and save links in a JSON file of links
 app.get("/generate-links", async (req, res) => {
   try {
