@@ -8,7 +8,6 @@ const app = express();
 const PORT = 3000;
 const links = [];
 
-
 // Function to scrape links from the given websites
 async function scrapeLinks() {
   const url = "https://diversetile.blogspot.com/";
@@ -32,8 +31,6 @@ async function scrapeLinks() {
   });
   return links;
 }
-
-
 
 // Endpoint to generate and save links in a JSON file of links
 app.get("/generate-links", async (req, res) => {
