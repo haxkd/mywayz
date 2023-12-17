@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3000;
 const links = [];
 
-// Function to scrape links from the given websites
+// Function to scrape links from the given website
 async function scrapeLinks() {
   const url = "https://diversetile.blogspot.com/";
   const response = await axios.get(url);
@@ -32,7 +32,7 @@ async function scrapeLinks() {
   return links;
 }
 
-// Endpoint to generate and save links in a JSON file of links
+// Endpoint to generate and save links in a JSON file of link
 app.get("/generate-links", async (req, res) => {
   try {
     const links = await scrapeLinks();
